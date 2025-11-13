@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Meal & Grocery Planner</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="grid-lines"></div>
+
+    <div class="container">
+        <header>
+            <h1>MEAL & GROCERY PLAN</h1>
+            <div class="subtitle">Plan meals. Add groceries. Eat like home.</div>
+        </header>
+
+        <div class="dashboard">
+            <!-- Meal Grid -->
+            <div class="card meal-grid">
+                <h2><i class="fas fa-utensils"></i> WEEKLY MEAL SCHEDULE</h2>
+                <div class="week-grid">
+                    <div class="day-header">Day</div>
+                    <div class="day-header">Breakfast</div>
+                    <div class="day-header">Lunch</div>
+                    <div class="day-header">Dinner</div>
+
+                    <!-- Monday -->
+                    <div class="day-label">Mon</div>
+                    <div class="meal-slot" data-day="mon" data-meal="breakfast">+</div>
+                    <div class="meal-slot" data-day="mon" data-meal="lunch">+</div>
+                    <div class="meal-slot" data-day="mon" data-meal="dinner">+</div>
+
+                    <!-- Tuesday -->
+                    <div class="day-label">Tue</div>
+                    <div class="meal-slot" data-day="tue" data-meal="breakfast">+</div>
+                    <div class="meal-slot" data-day="tue" data-meal="lunch">+</div>
+                    <div class="meal-slot" data-day="tue" data-meal="dinner">+</div>
+
+                    <!-- Wednesday -->
+                    <div class="day-label">Wed</div>
+                    <div class="meal-slot" data-day="wed" data-meal="breakfast">+</div>
+                    <div class="meal-slot" data-day="wed" data-meal="lunch">+</div>
+                    <div class="meal-slot" data-day="wed" data-meal="dinner">+</div>
+
+                    <!-- Thursday -->
+                    <div class="day-label">Thu</div>
+                    <div class="meal-slot" data-day="thu" data-meal="breakfast">+</div>
+                    <div class="meal-slot" data-day="thu" data-meal="lunch">+</div>
+                    <div class="meal-slot" data-day="thu" data-meal="dinner">+</div>
+
+                    <!-- Friday -->
+                    <div class="day-label">Fri</div>
+                    <div class="meal-slot" data-day="fri" data-meal="breakfast">+</div>
+                    <div class="meal-slot" data-day="fri" data-meal="lunch">+</div>
+                    <div class="meal-slot" data-day="fri" data-meal="dinner">+</div>
+
+                    <!-- Saturday -->
+                    <div class="day-label">Sat</div>
+                    <div class="meal-slot" data-day="sat" data-meal="breakfast">+</div>
+                    <div class="meal-slot" data-day="sat" data-meal="lunch">+</div>
+                    <div class="meal-slot" data-day="sat" data-meal="dinner">+</div>
+
+                    <!-- Sunday -->
+                    <div class="day-label">Sun</div>
+                    <div class="meal-slot" data-day="sun" data-meal="breakfast">+</div>
+                    <div class="meal-slot" data-day="sun" data-meal="lunch">+</div>
+                    <div class="meal-slot" data-day="sun" data-meal="dinner">+</div>
+                </div>
+            </div>
+
+            <!-- Grocery List -->
+            <div class="card grocery-list">
+                <h2><i class="fas fa-shopping-cart"></i> GROCERY LIST</h2>
+                <div class="grocery-container" id="grocery-list">
+                    <p class="empty-message">No items yet.</p>
+                </div>
+
+                <!-- Add Grocery Input -->
+                <div class="add-grocery">
+                    <h3><i class="fas fa-plus-circle"></i> Add Grocery Item</h3>
+                    <div class="form-row">
+                        <input type="text" id="grocery-item" placeholder="E.g., Toothpaste, Soy Sauce, Rice, Detergent">
+                        <button id="add-grocery-btn" class="btn small">Add</button>
+                    </div>
+                </div>
+
+                <button id="clear-all" class="btn">
+                    <i class="fas fa-trash"></i> Clear All
+                </button>
+            </div>
+        </div>
+
+        <!-- Meal Selection Modal -->
+        <div class="modal" id="meal-modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3>Add/Edit Meal</h3>
+                <div class="meal-options" id="meal-options">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Clarence John De Leon &copy; 2025 | Meal & Grocery Planner </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
