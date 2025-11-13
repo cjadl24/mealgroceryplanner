@@ -105,35 +105,28 @@ function openMealModal(day, mealType) {
 
     const currentMeal = meals[`${day}-${mealType}`];
 
-    // Show current meal if exists
-    if (currentMeal) {
-        const currentOption = document.createElement('div');
-        currentOption.className = 'meal-option current-meal';
-        currentOption.innerHTML = `
-            <strong>Currently selected:</strong> ${currentMeal}
-        `;
-        currentOption.style.backgroundColor = 'rgba(0, 255, 157, 0.1)';
-        currentOption.style.border = '1px solid var(--accent)';
-        currentOption.style.marginBottom = '10px';
-        currentOption.style.padding = '10px';
-        currentOption.style.borderRadius = '8px';
-        mealOptionsContainer.appendChild(currentOption);
-    }
+    // Create modal title
+    const titleDiv = document.createElement('div');
+    titleDiv.className = 'modal-title';
+    titleDiv.innerHTML = '<i class="fas fa-utensils"></i> Add/Edit Meal';
+    mealOptionsContainer.appendChild(titleDiv);
 
-    // Create input for new meal
-    const mealInput = document.createElement('input');
-    mealInput.type = 'text';
-    mealInput.id = 'meal-name';
-    mealInput.placeholder = 'Enter meal name (e.g., Lumpia Recipe, Tita\'s Adobo)';
-    mealInput.value = currentMeal || '';
-    mealInput.autofocus = true;
-    mealOptionsContainer.appendChild(mealInput);
+    // Create meal name input
+    const mealNameInput = document.createElement('input');
+    mealNameInput.type = 'text';
+    mealNameInput.className = 'modal-input';
+    mealNameInput.id = 'meal-name';
+    mealNameInput.placeholder = 'Enter meal name (e.g., Lumpia Recipe, Tita\'s Adobo)';
+    mealNameInput.value = currentMeal || '';
+    mealNameInput.autofocus = true;
+    mealOptionsContainer.appendChild(mealNameInput);
 
-    // Create textarea for ingredients
+    // Create ingredients textarea
     const ingredientsTextarea = document.createElement('textarea');
+    ingredientsTextarea.className = 'modal-input';
     ingredientsTextarea.id = 'ingredients';
-    ingredientsTextarea.placeholder = 'Enter ingredients (one per line)\nExample:\n- Soy sauce\n- Vinegar\n- Garlic\n- Pork';
-    ingredientsTextarea.rows = 4;
+    ingredientsTextarea.placeholder = 'Enter ingredients (one per line)\nExample:\n- Soy sauce\n- Vinegar\n- Garlic';
+    ingredientsTextarea.rows = 6;
     
     // Get saved ingredients for current meal if exists
     if (currentMeal && meals[`${day}-${mealType}-ingredients`]) {
@@ -142,19 +135,12 @@ function openMealModal(day, mealType) {
     
     mealOptionsContainer.appendChild(ingredientsTextarea);
 
-    // Create buttons container
-    const buttonsContainer = document.createElement('div');
-    buttonsContainer.style.display = 'flex';
-    buttonsContainer.style.flexDirection = 'column';
-    buttonsContainer.style.gap = '10px';
-    buttonsContainer.style.marginTop = '15px';
-
-    // Save meal button
+    // Create save button
     const saveBtn = document.createElement('button');
-    saveBtn.className = 'btn';
+    saveBtn.className = 'save-btn';
     saveBtn.innerHTML = '<i class="fas fa-save"></i> Save Meal';
     saveBtn.addEventListener('click', () => {
-        const mealName = mealInput.value.trim();
+        const mealName = mealNameInput.value.trim();
         if (!mealName) {
             alert('Please enter a meal name!');
             return;
@@ -176,7 +162,7 @@ function openMealModal(day, mealType) {
         loadMeals();
         modal.style.display = 'none';
     });
-    buttonsContainer.appendChild(saveBtn);
+    mealOptionsContainer.appendChild(saveBtn);
 
     // Add "Remove This Meal" button if a meal is already selected
     if (currentMeal) {
@@ -185,6 +171,7 @@ function openMealModal(day, mealType) {
         removeBtn.innerHTML = '<i class="fas fa-trash"></i> Remove This Meal';
         removeBtn.style.backgroundColor = 'rgba(255, 0, 85, 0.1)';
         removeBtn.style.borderColor = '#ff0055';
+        removeBtn.style.marginTop = '15px';
         removeBtn.addEventListener('click', () => {
             const key = `${day}-${mealType}`;
             delete meals[key];
@@ -193,14 +180,12 @@ function openMealModal(day, mealType) {
             loadMeals();
             modal.style.display = 'none';
         });
-        buttonsContainer.appendChild(removeBtn);
+        mealOptionsContainer.appendChild(removeBtn);
     }
 
-    mealOptionsContainer.appendChild(buttonsContainer);
-    
     // Focus on the meal input for better mobile experience
     setTimeout(() => {
-        mealInput.focus();
+        mealNameInput.focus();
     }, 300);
 }
 
